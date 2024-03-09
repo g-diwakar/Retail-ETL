@@ -1,0 +1,26 @@
+{{config(
+    tags=["grp"]
+    ,pre_hook=mpre_hook(c_package="GRP", c_status="RUNNING", c_bookmark="AFTER_STG")
+    )}}
+
+SELECT
+    GRP_ID,
+    GRP_DESC,
+    DIV.DIV_KEY as DIV_KEY,
+    DIV.DIV_ID as DIV_ID,
+    DIV.DIV_DESC as DIV_DESC,
+    DIV.COMPANY_KEY as COMPANY_KEY,
+    DIV.COMPANY_ID as COMPANY_ID,
+    DIV.COMPANY_DESC as COMPANY_DESC,
+    RMS_Q_BYR_DNUM,
+    RMS_Q_BYR_SDESC,
+    RMS_GRP_BUYR_NAME,
+    GRP.RMS_SRC_ID as RMS_SRC_ID,
+    RMS_GRP_MRCH_NAME,
+    RMS_GRP_MRCH_IDNT,
+    RMS_GRP_BUYR_IDNT,
+    GRP.RMS_LOAD_DATE as RMS_LOAD_DATE
+
+FROM {{ref('V_STG_D_PRD_GRP_LU')}} as GRP 
+LEFT OUTER JOIN {{ref('DWH_D_PRD_DIV_LU')}} as DIV
+on GRP.DIV_ID = DIV.DIV_ID

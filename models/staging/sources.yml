@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  - name: DW_LND_RMS 
+    database: DBT_PROJECT 
+    schema: DW_LND_RMS 
+    tables:
+      - name: COMPANY 
+      - name: BRAND 
+      - name: AREA
+      - name: REGION
+      - name: DISTRICT
+      - name: GYM_LOC_EXTRACT_QS_V
+      - name: WH
+      - name: STORE_FORMAT
+      - name: STORE_GRADE
+      - name: DIVISION
+      - name: PROD_GROUP
+      - name: DEPARTMENT
+      - name: CLASS
+      - name: SUBCLASS
+      - name: PRDDIFFDM
+      - name: ITEM_MASTER
+      - name: PRDITMUHDM
+      - name: PRDITMUDDM
+      - name: PRDITMUMDM
+      - name: SEASON
+      - name: CALENDAR
+      - name: MSTR_CALENDAR
+      - name: DW_INV_SKU_STR_D
+      - name: ITEM_LOC_SOH
+      - name: PRICEHIST
+      - name: DW_SLS_TXN_HDR
+      - name: DW_SLS_TXN_DTL
+      - name: SLSITEMDM
+      - name: CURRENCY
+      - name: CURRENCY_RATES
+      - name: DW_CCY_XRT
+      - name: WEB_STORE_SALES_PLAN
+      - name: BNM_SALES_PLAN
+      - name: STORE_TRAFFIC
+      - name: DW_TRF_STR_D
+      - name: DW_LOC_STR

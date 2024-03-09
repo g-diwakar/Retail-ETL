@@ -1,0 +1,23 @@
+
+{{config(
+    tags=["div"]
+    ,pre_hook=mpre_hook(c_package="DIV", c_status="RUNNING", c_bookmark="AFTER_STG")
+)}}
+
+SELECT
+    DIV_ID,
+    DIV_DESC,
+    COMPANY.COMPANY_KEY as COMPANY_KEY,
+    COMPANY.COMPANY_ID as COMPANY_ID,
+    COMPANY.COMPANY_DESC as COMPANY_DESC,
+    RMS_DIV_MRCH_NAME,
+    RMS_DIV_BYR_NAME,
+    RMS_SRC_ID,
+    RMS_Q_DMM_DNUM,
+    RMS_DIV_MRCH_IDNT,
+    RMS_DIV_BYR_IDNT,
+    RMS_Q_DMM_SDESC,
+    RMS_LOAD_DATE
+FROM {{ref('V_STG_D_PRD_DIV_LU')}} as DIV
+LEFT OUTER JOIN {{ref('DWH_D_ORG_COMPANY_LU')}} as COMPANY
+ON DIV.COMPANY_ID = COMPANY.COMPANY_ID

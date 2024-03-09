@@ -1,0 +1,32 @@
+{{config(
+    tags=["dpt"]
+    ,pre_hook=mpre_hook(c_package="DPT", c_status="RUNNING", c_bookmark="AFTER_STG")
+    )}}
+
+SELECT
+    DPT_ID,
+    DPT_DESC,
+    GRP.GRP_KEY as GRP_KEY,
+    GRP.GRP_ID as GRP_ID,
+    GRP.GRP_DESC as GRP_DESC,
+    GRP.DIV_KEY as DIV_KEY,
+    GRP.DIV_ID as DIV_ID,
+    GRP.DIV_DESC as DIV_DESC,
+    GRP.COMPANY_KEY as COMPANY_KEY,
+    GRP.COMPANY_ID as COMPANY_ID,
+    GRP.COMPANY_DESC as COMPANY_DESC,
+    RMS_BUD_MKUP,
+    RMS_PRFT_CALC_TYPE_CDE,
+    RMS_PURCH_TYPE_CDE,
+    DPT.RMS_LOAD_DATE as RMS_LOAD_DATE,
+    DPT.RMS_SRC_ID as RMS_SRC_ID,
+    RMS_OTB_CALC_TYPE_CDE,
+    RMS_Q_DPT_BYR_NM,
+    RMS_Q_DPT_SDESC,
+    RMS_MKUP_CALC_TYPE_CDE,
+    RMS_Q_DPT_DNUM,
+    RMS_BUD_INT
+
+    FROM {{ref('V_STG_D_PRD_DPT_LU')}} as DPT
+    LEFT OUTER JOIN {{ref('DWH_D_PRD_GRP_LU')}} as GRP
+    ON DPT.GRP_ID = GRP.GRP_ID

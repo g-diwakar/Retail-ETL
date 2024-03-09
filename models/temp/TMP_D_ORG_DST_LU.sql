@@ -1,0 +1,35 @@
+{{config(
+    tags=["dst"]
+        ,pre_hook=mpre_hook(c_package="DST", c_status="RUNNING", c_bookmark="AFTER_STG")
+    )}}
+
+SELECT 
+    DST_ID,
+    DST_DESC,
+    RGN.RGN_KEY as RGN_KEY,
+    RGN.RGN_ID as RGN_ID,
+    RGN.RGN_DESC as RGN_DESC,
+    RGN.ARA_KEY as ARA_KEY,
+    RGN.ARA_ID as ARA_ID,
+    RGN.ARA_DESC as ARA_DESC,
+    RGN.CHN_KEY as CHN_KEY,
+    RGN.CHN_ID as CHN_ID,
+    RGN.CHN_DESC as CHN_DESC,
+    RGN.COMPANY_KEY as COMPANY_KEY,
+    --RGN.COMPANY_ID as COMPANY_ID,
+    --RGN.COMPANY_DESC as COMPANY_DESC,
+    DST_MGR_FIRST_NAME,
+    DST_MGR_LAST_NAME,
+    DST_MGR_HOME_STR,
+    DST_MGR_PHONE,
+    DST_MGR_MAIL_EXT,
+    DST_MGR_COUNTRY_CDE,
+    DST_MGR_ASSISTANT_NAME,
+    DST_MGR_MOBILE,
+    RMS_Q_DST_SDESC,
+    DST.RMS_LOAD_DATE as RMS_LOAD_DATE,
+    RMS_Q_DST_DNUM,
+    DST.RMS_SRC_ID as RMS_SRC_ID
+FROM {{ref('V_STG_D_ORG_DST_LU')}} as DST
+LEFT OUTER JOIN {{ref('DWH_D_ORG_RGN_LU')}} as RGN
+    ON DST.RGN_ID = RGN.RGN_ID
